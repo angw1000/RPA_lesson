@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛒 貨品銷售系統 - Selenium 教學</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/index.html" id="home-link">← 回首頁</a>
+    </div>
+
+    <h1>🛒 貨品銷售系統</h1>
+    <p class="subtitle">請輸入您的學生代號以開始操作</p>
+
+    <section>
+      <div class="form-group">
+        <label for="student-id">學生代號</label>
+        <input type="text" id="student-id" placeholder="例如: S01" style="max-width:200px">
+        <p id="error-msg" class="error-msg" style="display:none;max-width:400px"></p>
+      </div>
+      <div class="form-row">
+        <button id="btn-to-input">進入銷售輸入</button>
+        <button id="btn-to-query" class="secondary">進入銷售查詢</button>
+      </div>
+    </section>
+
+    <section style="background:none;box-shadow:none;padding:0">
+      <h2 style="font-size:1rem;color:#666">📖 操作說明</h2>
+      <ul style="color:#555;font-size:0.95rem;padding-left:20px;line-height:2">
+        <li>輸入您的學生代號（例如：S01、S02 … S30）</li>
+        <li>點擊「進入銷售輸入」可新增貨品銷售紀錄</li>
+        <li>點擊「進入銷售查詢」可查看與刪除您的銷售紀錄</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    function navigate(page) {
+      const id = document.getElementById('student-id').value.trim();
+      const err = document.getElementById('error-msg');
+      if (!id) {
+        err.textContent = '請輸入學生代號！';
+        err.style.display = 'block';
+        return;
+      }
+      err.style.display = 'none';
+      window.location.href = page + '?student_id=' + encodeURIComponent(id);
+    }
+
+    document.getElementById('btn-to-input').addEventListener('click', function () {
+      navigate('/sales/input.html');
+    });
+
+    document.getElementById('btn-to-query').addEventListener('click', function () {
+      navigate('/sales/query.html');
+    });
+  </script>
+</body>
+</html>

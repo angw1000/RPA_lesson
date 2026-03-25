@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⌨️ SendKeys 練習 - Selenium 教學</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/index.html" id="home-link">← 回首頁</a>
+    </div>
+
+    <h1>⌨️ SendKeys 練習</h1>
+    <p class="subtitle">練習各種鍵盤輸入操作，包含文字、密碼、Textarea、日期、數字與鍵盤組合鍵。</p>
+
+    <!-- 練習 1: 文字輸入 -->
+    <section>
+      <h2>練習 1：文字輸入</h2>
+      <p>在輸入框中打字，下方即時顯示輸入內容。</p>
+      <div class="form-group">
+        <label for="input-text">文字輸入:</label>
+        <input type="text" id="input-text" placeholder="請輸入文字" oninput="document.getElementById('text-mirror').textContent = this.value">
+      </div>
+      <p>即時顯示: <span class="result-text" id="text-mirror"></span></p>
+    </section>
+
+    <!-- 練習 2: 密碼輸入 -->
+    <section>
+      <h2>練習 2：密碼輸入</h2>
+      <p>輸入密碼，並可切換顯示/隱藏。</p>
+      <div class="form-group">
+        <label for="input-password">密碼:</label>
+        <div class="form-row">
+          <input type="password" id="input-password" placeholder="請輸入密碼" style="max-width:300px">
+          <button id="btn-show-pwd">顯示/隱藏</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 練習 3: 文字區域 -->
+    <section>
+      <h2>練習 3：文字區域 (Textarea)</h2>
+      <p>在多行文字框中輸入，下方顯示即時字數統計。</p>
+      <div class="form-group">
+        <label for="input-textarea">多行文字:</label>
+        <textarea id="input-textarea" rows="5" placeholder="請輸入多行文字..." style="max-width:100%"
+          oninput="document.getElementById('char-count').textContent = '字數: ' + this.value.length + ' 字'"></textarea>
+      </div>
+      <p class="result-text" id="char-count">字數: 0 字</p>
+    </section>
+
+    <!-- 練習 4: 日期選擇 -->
+    <section>
+      <h2>練習 4：日期選擇</h2>
+      <p>選擇日期後下方顯示格式化結果。</p>
+      <div class="form-group">
+        <label for="input-date">選擇日期:</label>
+        <input type="date" id="input-date">
+      </div>
+      <p class="result-text" id="date-result"></p>
+    </section>
+
+    <!-- 練習 5: 數字輸入 -->
+    <section>
+      <h2>練習 5：數字輸入</h2>
+      <p>輸入 0 到 100 之間的數字，點擊按鈕顯示。</p>
+      <div class="form-group">
+        <label for="input-number">數字 (0-100):</label>
+        <div class="form-row">
+          <input type="number" id="input-number" min="0" max="100" value="0" style="max-width:150px">
+          <button id="btn-show-number">顯示數值</button>
+        </div>
+      </div>
+      <p class="result-text" id="number-result"></p>
+    </section>
+
+    <!-- 練習 6: 搜尋框 (含清除) -->
+    <section>
+      <h2>練習 6：搜尋框 (含清除)</h2>
+      <p>輸入搜尋內容，可點擊清除按鈕清空輸入框。</p>
+      <div class="form-group">
+        <label for="input-search">搜尋關鍵字:</label>
+        <div class="form-row">
+          <input type="text" id="input-search" placeholder="請輸入搜尋關鍵字" style="max-width:300px">
+          <button id="btn-clear-search" class="secondary">清除</button>
+          <button id="btn-do-search">搜尋</button>
+        </div>
+      </div>
+      <p class="result-text" id="search-result"></p>
+    </section>
+
+    <!-- 練習 7: 鍵盤組合鍵 -->
+    <section>
+      <h2>練習 7：鍵盤組合鍵</h2>
+      <p>在輸入框中按下任意按鍵，偵測結果即時顯示。</p>
+      <div class="form-group">
+        <label for="input-hotkey">按鍵偵測輸入框:</label>
+        <input type="text" id="input-hotkey" placeholder="在此輸入框按任意按鍵">
+      </div>
+      <p>偵測到的按鍵: <span class="result-text" id="hotkey-result"></span></p>
+    </section>
+
+  </div>
+
+  <script>
+    // 練習 2: 密碼顯示/隱藏
+    document.getElementById('btn-show-pwd').addEventListener('click', function () {
+      const input = document.getElementById('input-password');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    });
+
+    // 練習 4: 日期格式化
+    document.getElementById('input-date').addEventListener('change', function () {
+      const el = document.getElementById('date-result');
+      if (this.value) {
+        const parts = this.value.split('-');
+        el.textContent = parts[0] + '年' + parts[1] + '月' + parts[2] + '日';
+      } else {
+        el.textContent = '';
+      }
+    });
+
+    // 練習 5: 數字顯示
+    document.getElementById('btn-show-number').addEventListener('click', function () {
+      const val = document.getElementById('input-number').value;
+      document.getElementById('number-result').textContent = '輸入的數值: ' + val;
+    });
+
+    // 練習 6: 搜尋 & 清除
+    document.getElementById('btn-clear-search').addEventListener('click', function () {
+      document.getElementById('input-search').value = '';
+      document.getElementById('search-result').textContent = '';
+    });
+
+    document.getElementById('btn-do-search').addEventListener('click', function () {
+      const val = document.getElementById('input-search').value.trim();
+      const el = document.getElementById('search-result');
+      el.textContent = val ? '搜尋結果: 「' + val + '」' : '請輸入搜尋關鍵字';
+    });
+
+    // 練習 7: 鍵盤按鍵偵測
+    document.getElementById('input-hotkey').addEventListener('keydown', function (e) {
+      e.preventDefault();
+      const keyMap = {
+        'Enter': 'Enter (換行/確認)',
+        'Tab': 'Tab (切換焦點)',
+        'Escape': 'Escape (取消)',
+        'Backspace': 'Backspace (退格)',
+        'Delete': 'Delete (刪除)',
+        'ArrowLeft': '← 左方向鍵',
+        'ArrowRight': '→ 右方向鍵',
+        'ArrowUp': '↑ 上方向鍵',
+        'ArrowDown': '↓ 下方向鍵',
+        ' ': 'Space (空白鍵)',
+      };
+      let display = keyMap[e.key] || e.key;
+      if (e.ctrlKey && e.key !== 'Control') display = 'Ctrl + ' + e.key.toUpperCase();
+      if (e.altKey && e.key !== 'Alt') display = 'Alt + ' + e.key.toUpperCase();
+      if (e.shiftKey && e.key !== 'Shift' && e.key.length > 1) display = 'Shift + ' + e.key;
+      document.getElementById('hotkey-result').textContent = display;
+    });
+  </script>
+</body>
+</html>

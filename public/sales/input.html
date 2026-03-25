@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>貨品銷售輸入 - Selenium 教學</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/index.html">← 回首頁</a>
+      <a href="/sales/index.html">回銷售入口</a>
+      <a id="nav-to-query" href="#">前往查詢頁</a>
+    </div>
+
+    <h1>🛒 貨品銷售輸入</h1>
+    <div class="student-badge">學生代號: <span id="display-student-id"></span></div>
+
+    <section>
+      <h2>新增銷售紀錄</h2>
+      <form id="sales-form">
+        <div class="form-group">
+          <label for="sales-product">貨品選擇</label>
+          <select id="sales-product">
+            <option value="">-- 載入中 --</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>單價</label>
+          <p>NT$ <span id="display-price" style="font-weight:bold;color:#4a90d9">--</span></p>
+        </div>
+
+        <div class="form-group">
+          <label for="sales-quantity">數量</label>
+          <input type="number" id="sales-quantity" min="1" value="1" style="max-width:120px">
+        </div>
+
+        <div class="form-group">
+          <label for="sales-date">銷售日期</label>
+          <input type="date" id="sales-date" style="max-width:200px">
+        </div>
+
+        <div class="form-group">
+          <label>預估小計</label>
+          <p style="font-size:1.2rem;font-weight:bold;color:#2ecc71">NT$ <span id="display-subtotal">--</span></p>
+        </div>
+
+        <button type="submit" id="sales-submit">送出銷售紀錄</button>
+      </form>
+
+      <div id="sales-message" style="margin-top:12px"></div>
+    </section>
+
+    <section>
+      <h2>最近銷售紀錄</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>貨品名稱</th>
+            <th>數量</th>
+            <th>單價</th>
+            <th>小計</th>
+            <th>銷售日期</th>
+          </tr>
+        </thead>
+        <tbody id="recent-sales">
+          <tr><td colspan="6" style="text-align:center;color:#888">載入中...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="/js/sales.js"></script>
+</body>
+</html>

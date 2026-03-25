@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚠️ Alert 處理練習 - Selenium 教學</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/index.html" id="home-link">← 回首頁</a>
+    </div>
+
+    <h1>⚠️ Alert 處理練習</h1>
+    <p class="subtitle">練習各種彈窗處理：Alert、Confirm、Prompt、延遲 Alert 與自訂 Modal。</p>
+
+    <!-- 練習 1: Alert -->
+    <section>
+      <h2>練習 1：Alert 彈窗</h2>
+      <p>點擊按鈕觸發瀏覽器原生 Alert 彈窗。</p>
+      <button id="btn-alert">觸發 Alert</button>
+    </section>
+
+    <!-- 練習 2: Confirm -->
+    <section>
+      <h2>練習 2：Confirm 確認框</h2>
+      <p>點擊按鈕觸發 Confirm 確認框，結果顯示於下方。</p>
+      <button id="btn-confirm">觸發 Confirm</button>
+      <p class="result-text" id="confirm-result"></p>
+    </section>
+
+    <!-- 練習 3: Prompt -->
+    <section>
+      <h2>練習 3：Prompt 輸入框</h2>
+      <p>點擊按鈕觸發 Prompt 輸入框，結果顯示於下方。</p>
+      <button id="btn-prompt">觸發 Prompt</button>
+      <p class="result-text" id="prompt-result"></p>
+    </section>
+
+    <!-- 練習 4: 延遲 Alert -->
+    <section>
+      <h2>練習 4：延遲 Alert (3 秒)</h2>
+      <p>點擊按鈕後，3 秒後自動觸發 Alert。需搭配 <code>WebDriverWait</code> 等待處理。</p>
+      <button id="btn-delayed-alert">觸發延遲 Alert</button>
+      <p style="color:#888; font-size:0.9rem; margin-top:8px;">💡 提示：需搭配 WebDriverWait 等待處理</p>
+    </section>
+
+    <!-- 練習 5: 連續 Alert -->
+    <section>
+      <h2>練習 5：連續 Alert</h2>
+      <p>點擊按鈕觸發 3 個連續 Alert，需逐一處理。</p>
+      <button id="btn-multi-alert">觸發連續 Alert</button>
+      <p class="result-text" id="multi-alert-result"></p>
+    </section>
+
+    <!-- 練習 6: 自訂 Modal -->
+    <section>
+      <h2>練習 6：自訂 Modal 彈窗</h2>
+      <p>點擊按鈕顯示自訂 Modal，需用 Selenium 操作 DOM 元素關閉。</p>
+      <button id="btn-modal">開啟自訂 Modal</button>
+      <p class="result-text" id="modal-result"></p>
+    </section>
+
+    <!-- 自訂 Modal -->
+    <div id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-content">
+        <h3 id="modal-title">自訂彈窗</h3>
+        <p>這是一個自訂的 Modal 彈窗，需要用 Selenium 操作 DOM 來關閉。</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm">確定</button>
+          <button id="modal-cancel" class="secondary">取消</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // 練習 1: Alert
+    document.getElementById('btn-alert').addEventListener('click', function () {
+      alert('這是一個 Alert 訊息!');
+    });
+
+    // 練習 2: Confirm
+    document.getElementById('btn-confirm').addEventListener('click', function () {
+      const result = confirm('你確定要繼續嗎？');
+      document.getElementById('confirm-result').textContent = result ? '你按了「確定」' : '你按了「取消」';
+    });
+
+    // 練習 3: Prompt
+    document.getElementById('btn-prompt').addEventListener('click', function () {
+      const input = prompt('請輸入你的姓名：');
+      const el = document.getElementById('prompt-result');
+      if (input !== null) {
+        el.textContent = '你輸入的是: ' + input;
+      } else {
+        el.textContent = '你取消了輸入';
+      }
+    });
+
+    // 練習 4: 延遲 Alert
+    document.getElementById('btn-delayed-alert').addEventListener('click', function () {
+      setTimeout(function () {
+        alert('延遲 3 秒的 Alert!');
+      }, 3000);
+    });
+
+    // 練習 5: 連續 Alert
+    document.getElementById('btn-multi-alert').addEventListener('click', function () {
+      alert('第1個 Alert');
+      alert('第2個 Alert');
+      alert('第3個 Alert');
+      document.getElementById('multi-alert-result').textContent = '已完成 3 個連續 Alert 處理';
+    });
+
+    // 練習 6: 自訂 Modal
+    document.getElementById('btn-modal').addEventListener('click', function () {
+      document.getElementById('custom-modal').classList.add('show');
+      document.getElementById('modal-result').textContent = '';
+    });
+
+    document.getElementById('modal-confirm').addEventListener('click', function () {
+      document.getElementById('custom-modal').classList.remove('show');
+      document.getElementById('modal-result').textContent = '你按了 Modal 的「確定」';
+    });
+
+    document.getElementById('modal-cancel').addEventListener('click', function () {
+      document.getElementById('custom-modal').classList.remove('show');
+      document.getElementById('modal-result').textContent = '你按了 Modal 的「取消」';
+    });
+  </script>
+</body>
+</html>

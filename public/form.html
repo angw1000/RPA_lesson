@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📋 表單操作練習 - Selenium 教學</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/index.html" id="home-link">← 回首頁</a>
+    </div>
+
+    <h1>📋 表單操作練習</h1>
+    <p class="subtitle">練習完整表單的填寫、送出與資料驗證顯示。</p>
+
+    <section>
+      <h2>完整表單練習</h2>
+      <form id="practice-form" novalidate>
+        <div class="form-group">
+          <label for="form-name">姓名 <span style="color:red">*</span></label>
+          <input type="text" id="form-name" name="name" required placeholder="請輸入姓名">
+        </div>
+
+        <div class="form-group">
+          <label for="form-email">Email <span style="color:red">*</span></label>
+          <input type="email" id="form-email" name="email" required placeholder="example@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="form-phone">電話</label>
+          <input type="tel" id="form-phone" name="phone" placeholder="09xx-xxx-xxx">
+        </div>
+
+        <div class="form-group">
+          <label>性別</label>
+          <div class="form-row">
+            <label><input type="radio" name="gender" id="form-gender-male" value="男"> 男</label>
+            <label><input type="radio" name="gender" id="form-gender-female" value="女"> 女</label>
+            <label><input type="radio" name="gender" id="form-gender-other" value="其他"> 其他</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>興趣</label>
+          <div class="form-row">
+            <label><input type="checkbox" id="form-hobby-reading" name="hobby" value="閱讀"> 閱讀</label>
+            <label><input type="checkbox" id="form-hobby-sports" name="hobby" value="運動"> 運動</label>
+            <label><input type="checkbox" id="form-hobby-coding" name="hobby" value="程式"> 程式</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-city">城市</label>
+          <select id="form-city" name="city">
+            <option value="">請選擇城市</option>
+            <option value="台北">台北</option>
+            <option value="台中">台中</option>
+            <option value="台南">台南</option>
+            <option value="高雄">高雄</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="form-note">備註</label>
+          <textarea id="form-note" name="note" rows="4" placeholder="請輸入備註..." style="max-width:100%"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="form-agree" name="agree" value="true">
+            我已閱讀並同意使用條款
+          </label>
+        </div>
+
+        <div class="form-row">
+          <button type="submit" id="form-submit">送出表單</button>
+          <button type="reset" id="form-reset" class="secondary">重置</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="form-result" style="display:none">
+      <h2>✅ 表單送出結果</h2>
+      <dl id="form-result-content" style="line-height:2"></dl>
+    </section>
+
+  </div>
+
+  <script>
+    document.getElementById('practice-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+
+      if (!name) { alert('姓名為必填欄位！'); return; }
+      if (!email) { alert('Email 為必填欄位！'); return; }
+
+      const phone = document.getElementById('form-phone').value.trim();
+      const genderEl = document.querySelector('input[name="gender"]:checked');
+      const gender = genderEl ? genderEl.value : '未填寫';
+      const hobbies = Array.from(document.querySelectorAll('input[name="hobby"]:checked')).map(function (el) { return el.value; });
+      const city = document.getElementById('form-city').value;
+      const note = document.getElementById('form-note').value.trim();
+      const agree = document.getElementById('form-agree').checked;
+
+      const data = [
+        { label: '姓名', value: name },
+        { label: 'Email', value: email },
+        { label: '電話', value: phone || '未填寫' },
+        { label: '性別', value: gender },
+        { label: '興趣', value: hobbies.length > 0 ? hobbies.join(', ') : '未選擇' },
+        { label: '城市', value: city || '未選擇' },
+        { label: '備註', value: note || '無' },
+        { label: '同意條款', value: agree ? '✔ 已同意' : '✘ 未同意' },
+      ];
+
+      const dl = document.getElementById('form-result-content');
+      dl.innerHTML = '';
+      data.forEach(function (item) {
+        const dt = document.createElement('dt');
+        dt.style.fontWeight = 'bold';
+        dt.style.color = '#555';
+        dt.textContent = item.label + ':';
+        const dd = document.createElement('dd');
+        dd.style.marginLeft = '20px';
+        dd.style.marginBottom = '6px';
+        dd.textContent = item.value;
+        dl.appendChild(dt);
+        dl.appendChild(dd);
+      });
+
+      document.getElementById('form-result').style.display = 'block';
+      document.getElementById('form-result').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('form-reset').addEventListener('click', function () {
+      document.getElementById('form-result').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
