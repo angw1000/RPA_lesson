@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🖱️ Click 練習 - Selenium 教學</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/index.html" id="home-link">← 回首頁</a>
+    </div>
+
+    <h1>🖱️ Click 練習</h1>
+    <p class="subtitle">練習各種點擊操作，包含按鈕、連結、Checkbox、Radio、Select、雙擊與右鍵。</p>
+
+    <!-- 練習 1: 基本按鈕點擊 -->
+    <section>
+      <h2>練習 1：基本按鈕點擊</h2>
+      <p>點擊下方按鈕，觀察結果區域的變化。</p>
+      <button id="btn-click">點擊我</button>
+      <p class="result-text" id="click-result"></p>
+    </section>
+
+    <!-- 練習 2: 超連結點擊 -->
+    <section>
+      <h2>練習 2：超連結點擊</h2>
+      <p>點擊連結後頁面將跳轉至目標區塊。</p>
+      <a href="#link-target" id="test-link">🔗 點擊跳至目標區塊</a>
+    </section>
+
+    <!-- 練習 3: Checkbox 勾選 -->
+    <section>
+      <h2>練習 3：Checkbox 勾選</h2>
+      <p>勾選感興趣的程式語言，然後點擊按鈕查看結果。</p>
+      <div class="form-row">
+        <label><input type="checkbox" id="chk-python"> Python</label>
+        <label><input type="checkbox" id="chk-java"> Java</label>
+        <label><input type="checkbox" id="chk-js"> JavaScript</label>
+      </div>
+      <button id="btn-show-chk">顯示勾選項目</button>
+      <p class="result-text" id="chk-result"></p>
+    </section>
+
+    <!-- 練習 4: Radio 選擇 -->
+    <section>
+      <h2>練習 4：Radio 選擇</h2>
+      <p>選擇您的程式設計等級，結果將即時顯示。</p>
+      <div class="form-row">
+        <label><input type="radio" name="level" id="radio-beginner" value="初級"> 初級</label>
+        <label><input type="radio" name="level" id="radio-medium" value="中級"> 中級</label>
+        <label><input type="radio" name="level" id="radio-advanced" value="高級"> 高級</label>
+      </div>
+      <p class="result-text" id="radio-result"></p>
+    </section>
+
+    <!-- 練習 5: 下拉選單 (Select) -->
+    <section>
+      <h2>練習 5：下拉選單 (Select)</h2>
+      <p>選擇城市後結果將即時顯示。</p>
+      <select id="select-city">
+        <option value="">請選擇城市</option>
+        <option value="台北">台北</option>
+        <option value="台中">台中</option>
+        <option value="高雄">高雄</option>
+      </select>
+      <p class="result-text" id="select-result"></p>
+    </section>
+
+    <!-- 練習 6: 雙擊 -->
+    <section>
+      <h2>練習 6：雙擊 (Double Click)</h2>
+      <p>對下方按鈕執行雙擊操作。</p>
+      <button id="btn-dblclick">雙擊我</button>
+      <p class="result-text" id="dblclick-result"></p>
+    </section>
+
+    <!-- 練習 7: 右鍵點擊 -->
+    <section>
+      <h2>練習 7：右鍵點擊 (Context Menu)</h2>
+      <p>在下方區塊按滑鼠右鍵。</p>
+      <div id="context-area">在此區塊按右鍵</div>
+      <p class="result-text" id="context-result"></p>
+    </section>
+
+    <!-- 跳轉目標 -->
+    <section id="link-target">
+      <h2>🎯 連結跳轉目標</h2>
+      <p>您成功從上方連結跳轉到這裡！這是練習 2 的目標區塊。</p>
+    </section>
+
+  </div>
+
+  <script>
+    // 練習 1: 基本按鈕點擊
+    document.getElementById('btn-click').addEventListener('click', function () {
+      document.getElementById('click-result').textContent = '按鈕已點擊!';
+    });
+
+    // 練習 3: Checkbox
+    document.getElementById('btn-show-chk').addEventListener('click', function () {
+      const checked = [];
+      if (document.getElementById('chk-python').checked) checked.push('Python');
+      if (document.getElementById('chk-java').checked) checked.push('Java');
+      if (document.getElementById('chk-js').checked) checked.push('JavaScript');
+      const el = document.getElementById('chk-result');
+      el.textContent = checked.length > 0 ? '已勾選: ' + checked.join(', ') : '尚未勾選任何項目';
+    });
+
+    // 練習 4: Radio
+    document.querySelectorAll('input[name="level"]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        document.getElementById('radio-result').textContent = '已選擇: ' + this.value;
+      });
+    });
+
+    // 練習 5: Select
+    document.getElementById('select-city').addEventListener('change', function () {
+      const el = document.getElementById('select-result');
+      el.textContent = this.value ? '已選擇城市: ' + this.value : '';
+    });
+
+    // 練習 6: 雙擊
+    document.getElementById('btn-dblclick').addEventListener('dblclick', function () {
+      document.getElementById('dblclick-result').textContent = '偵測到雙擊!';
+    });
+
+    // 練習 7: 右鍵點擊
+    document.getElementById('context-area').addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      document.getElementById('context-result').textContent = '偵測到右鍵點擊!';
+    });
+  </script>
+</body>
+</html>

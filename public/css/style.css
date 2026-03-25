@@ -1,0 +1,394 @@
+/* 全站共用樣式 - Selenium 教學練習網站 */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", "Segoe UI", sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #4a90d9;
+  display: inline-block;
+}
+
+h2 {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+h3 {
+  color: #34495e;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+/* 導航 */
+.top-nav {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.top-nav a {
+  color: #4a90d9;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
+}
+
+/* 首頁卡片導航 */
+.practice-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.nav-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+}
+
+.nav-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-card h3 {
+  font-size: 1.15rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.nav-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Section 區塊 */
+section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+section h2 {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e8ecf0;
+  margin-bottom: 16px;
+}
+
+/* 表單元素 */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="search"],
+textarea,
+select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+  max-width: 400px;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #4a90d9;
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+/* 按鈕 */
+button {
+  padding: 10px 20px;
+  background: #4a90d9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #357abd;
+}
+
+button.secondary {
+  background: #6c757d;
+}
+
+button.secondary:hover {
+  background: #545b62;
+}
+
+button.danger {
+  background: #e74c3c;
+}
+
+button.danger:hover {
+  background: #c0392b;
+}
+
+button.small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+/* 結果文字 */
+.result-text {
+  color: #2ecc71;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* 訊息樣式 */
+.success-msg {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 10px;
+}
+
+.error-msg {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 10px;
+}
+
+/* 表格 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th {
+  background: #4a90d9;
+  color: #fff;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e8ecf0;
+  font-size: 0.95rem;
+}
+
+tr:nth-child(even) td {
+  background: #f8f9fa;
+}
+
+tr:hover td {
+  background: #eef4fb;
+}
+
+/* Modal overlay */
+#custom-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#custom-modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #2c3e50;
+}
+
+.modal-content p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* context-area */
+#context-area {
+  border: 2px dashed #4a90d9;
+  padding: 20px;
+  background: #f0f7ff;
+  min-height: 100px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  cursor: context-menu;
+  user-select: none;
+}
+
+/* 副標題 */
+.subtitle {
+  color: #555;
+  font-size: 1.05rem;
+  margin-bottom: 24px;
+}
+
+/* 學生代號顯示 */
+.student-badge {
+  display: inline-block;
+  background: #4a90d9;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* 統計區塊 */
+.stats-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.stat-item {
+  background: #f0f7ff;
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.stat-item .stat-label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.stat-item .stat-value {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #4a90d9;
+}
+
+/* 響應式 */
+@media (max-width: 600px) {
+  .container {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .practice-nav {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 16px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  input[type="search"],
+  textarea,
+  select {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>貨品銷售查詢 - Selenium 教學</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/index.html">← 回首頁</a>
+      <a href="/sales/index.html">回銷售入口</a>
+      <a id="nav-to-input" href="#">前往輸入頁</a>
+    </div>
+
+    <h1>🔍 貨品銷售查詢</h1>
+    <div class="student-badge">學生代號: <span id="display-student-id"></span></div>
+
+    <section>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:12px">
+        <h2 style="margin:0">銷售紀錄列表</h2>
+        <button id="btn-refresh">🔄 重新查詢</button>
+      </div>
+
+      <table id="sales-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>貨品編號</th>
+            <th>貨品名稱</th>
+            <th>數量</th>
+            <th>單價</th>
+            <th>小計</th>
+            <th>銷售日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="sales-tbody">
+          <tr><td colspan="8" style="text-align:center;color:#888">載入中...</td></tr>
+        </tbody>
+      </table>
+
+      <div class="stats-row" style="margin-top:16px">
+        <div class="stat-item">
+          <div class="stat-label">總筆數</div>
+          <div class="stat-value" id="sales-count">--</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">總金額</div>
+          <div class="stat-value" id="sales-total">--</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/sales.js"></script>
+</body>
+</html>
