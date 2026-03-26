@@ -1,6 +1,6 @@
 // 銷售系統前端邏輯 - Selenium 教學練習網站
 // API 基礎 URL (部署後改為實際 Workers URL)
-const API_BASE = 'https://api.angw1000.work';
+const API_BASE = 'https://api.rpa-learn.angw1000.work';
 
 // ===== 工具函式 =====
 
