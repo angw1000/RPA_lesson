@@ -349,9 +349,9 @@ function escHtml(str) {
 // ===== 頁面初始化 =====
 document.addEventListener('DOMContentLoaded', function init() {
   const path = window.location.pathname;
-  if (path.includes('input.html')) {
+  if (path.endsWith('/sales/input') || path.endsWith('/sales/input.html')) {
     initInputPage();
-  } else if (path.includes('query.html')) {
+  } else if (path.endsWith('/sales/query') || path.endsWith('/sales/query.html')) {
     initQueryPage();
   }
 });
