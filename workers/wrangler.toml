@@ -5,4 +5,4 @@ compatibility_date = "2026-03-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "selenium-sales-db"
-database_id = ""  # 建立 D1 後填入實際 ID
+database_id = "3a63dd67-90d0-4dab-99fa-7e241b0c333b"  # 建立 D1 後填入實際 ID
