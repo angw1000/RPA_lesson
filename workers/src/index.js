@@ -4,8 +4,8 @@
  */
 
 const ALLOWED_ORIGINS = [
-  'https://angw1000.work',
-  'https://www.angw1000.work',
+  'https:/rpa-learn.angw1000.work',
+  'https://www.rpa-learn.angw1000.work',
 ];
 
 /**
